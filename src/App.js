@@ -33,7 +33,7 @@ function App() {
           console.log(err.response.headers)
         }
         else {
-          console.log(`Error: ${err.message}`)
+          console.log(`Error: ${err.message}`);
         }
       }
     }
@@ -54,33 +54,34 @@ function App() {
       setPostBody('');
       navigator('/')
     } catch (err) {
-      console.log(`Error: ${err.message}`)
+      console.log(`Error: ${err.message}`);
     }
   }
-}
 
-const handleDelete = (id) => {
-  const postsList = posts.filter(post => post.id !== id);
-  setPosts(postsList);
-  navigator('/')
-}
 
-return (
-  <div className="App">
-    <Header title="CandorBees Social Media" />
-    <Nav search={search} setSearch={setSearch} />
-    <Routes>
-      <Route path="/" element={<Home posts={searchResults} />} />
-      <Route path="post" >
-        <Route index element={<NewPost handleSubmit={handleSubmit} postTitle={postTitle} setPostTitle={setPostTitle} postBody={postBody} setPostBody={setPostBody} />} />
-        <Route path=':id' element={<PostPage posts={posts} handleDelete={handleDelete} />} />
-      </Route>
-      <Route path="about" element={<About />} />
-      <Route path="*" element={<Missing />} />
-    </Routes>
-    <Footer />
-  </div>
-);
+  const handleDelete = (id) => {
+    const postsList = posts.filter(post => post.id !== id);
+    setPosts(postsList);
+    navigator('/')
+  }
+
+
+  return (
+    <div className="App">
+      <Header title="CandorBees Social Media" />
+      <Nav search={search} setSearch={setSearch} />
+      <Routes>
+        <Route path="/" element={<Home posts={searchResults} />} />
+        <Route path="post" >
+          <Route index element={<NewPost handleSubmit={handleSubmit} postTitle={postTitle} setPostTitle={setPostTitle} postBody={postBody} setPostBody={setPostBody} />} />
+          <Route path=':id' element={<PostPage posts={posts} handleDelete={handleDelete} />} />
+        </Route>
+        <Route path="about" element={<About />} />
+        <Route path="*" element={<Missing />} />
+      </Routes>
+      <Footer />
+    </div>
+  );
 }
 
 export default App;
